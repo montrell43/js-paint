@@ -48,7 +48,7 @@ while (count <= gridWidth * gridWidth) {
 
 // Add queries for all your squares, palette colors, and brush here.
 // (Note the singular or plural used in that sentence!)
-
+const paintBrush = document.querySelector('.brush-selection')
 
 
 /****************************
