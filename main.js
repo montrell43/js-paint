@@ -17,6 +17,7 @@
  */
 const gridWidth = 10;
 let count = 0;
+
 while (count <= gridWidth * gridWidth) {
   const canvas = document.querySelector('.canvas');
   const div = document.createElement('div');
@@ -48,13 +49,23 @@ while (count <= gridWidth * gridWidth) {
 
 // Add queries for all your squares, palette colors, and brush here.
 // (Note the singular or plural used in that sentence!)
-const paintBrush = document.querySelector('.brush-selection')
-
+const brush = document.querySelector('.current-brush')
+const paletteColors = document.querySelectorAll('.palette-color')
+const squares = document.querySelectorAll('.canvas .square')
 
 /****************************
  * EVENT LISTENER FUNCTIONS *
 ****************************/
+function handlePaletteClick(event) {
+  const colorChange = event.target.classList[1];
+  
+  brush.className = 'current-brush ' + colorChange
+}
 
+function handleSquareClick(event) {
+  const brushColor = brush.classList[1]
+  event.target.className = 'square ' + brushColor;
+}
 // Now add some functions to handle clicking one particular square
 // and clicking one particular palette color. You can leave them
 // empty at first, though a console.log just to know they're being
@@ -66,7 +77,13 @@ const paintBrush = document.querySelector('.brush-selection')
 /**************************
  * WIRING IT ALL TOGETHER *
 **************************/
+paletteColors.forEach( (colorSquare) => {
+  colorSquare.addEventListener('click', handlePaletteClick)
+})
 
+squares.forEach( (square) => {
+square.addEventListener('click', handleSquareClick);
+})
 // Now: wiring up our event listeners to our html node elements.
 // You'll need to add the appropriate event listener for each
 // square and for each palette color from the functions you
